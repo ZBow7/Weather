@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/weather-icons.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap" rel="stylesheet"> 
+    <title>Weather</title>    
+</head>
+<body>
+    <div class="nav-wrap">
+        <div id="mobile-nav-wrap">
+            <div id="hamburger-wrap">
+                <button id="hamburger" onclick="handleMobileNav()">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </button>
+            </div>
+            <div id="mobile-nav">
+                <ul id="nav-list">
+                    <li class="nav-item"> - Your weather</li>
+                    <li class="nav-item"> - Severe weather</li>
+                    <li class="nav-item"> - News</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="main-content">
+        <div id="location-search">
+                <input id="location-input" type="text" name="location-input" placeholder="Enter location" />
+                <button onclick="handleSearch()">Search</button>
+        </div>
+        <div class="forecast-panel">
+            <ul class="forecast-panel-list">
+                <li><a class="panel-link" href="">Hourly</a></li>
+                <li><a class="panel-link" href="">3 Day</a></li>
+                <li><a class="panel-link" href="">10 Day</a></li>
+            </ul>
+        </div>
+        <div id="forecast-wrap" class="forecast-wrap">
+            <div class="m-hour">
+                <div class="m-hour-top-half">
+                    <div class="flex-wrap">
+                        <p>5 PM</p>
+                        <img class="m-icon" src="//cdn.weatherapi.com/weather/64x64/night/113.png" />
+                    </div>
+                </div>
+                <div class="m-hour-top-half"><div class="flex-wrap"><p>Cloudy and stuff</p></div></div>
+                <div class="m-hour-bottom">
+                    <ul class="m-stats">
+                        <li>44&#176;</li>
+                        <li>Feels like 47&#176;</li>
+                        <li>15% prec</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="block-divider"></div>
+        </div>
+    </div>
+</body>
+</html>
