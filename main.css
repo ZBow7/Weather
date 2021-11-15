@@ -169,13 +169,41 @@ body {
     color: #c4281d;
 }
 
-#hourly-tom {
+#arrow-button-wrap {
+    width: 100%;
+    text-align: center;
+}
+
+.arrow-button-full {
     width: 100%;
     text-align: center;
     margin: 30 auto 25;
     font-size: 2rem;
 }
 
-#hourly-tom:hover {
+.arrow-button-full:hover {
     cursor: pointer;
+}
+
+.arrow-button-next-small, .arrow-button-previous-small {
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+    text-align: center;
+    margin: 30 auto 25;
+    font-size: 2rem;
+}
+
+.arrow-button-next-small:hover, .arrow-button-previous-small:hover {
+    cursor: pointer;
+}
+
+.arrow-button-previous-small {
+    padding-right: 15px;
+    text-align: right;
+}
+
+.arrow-button-next-small {
+    padding-left: 15px;
+    text-align: left;
 }

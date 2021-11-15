@@ -22,26 +22,53 @@ function handleSearch() {
 
 function createData(fullData) {
     forecastData = fullData;
-    createHourBlocks("initial");
+    createHourBlocks("today");
 }
 
 function createHourBlocks(type) {
     let today = new Date();
     let currentHour = today.getHours();
+    let day = setDay(type);
+    type = validateType(type, day);
     let targetHourMin = setTargetHourMin(type, currentHour);
     let targetHourMax = setTargetHourMax(type, currentHour);
-    let forecastOutput = initializeForecastOutput(type, currentHour);
-    forecastOutput += fillForecastOutput(targetHourMin, targetHourMax, type);
+    let forecastOutput = initializeForecastOutput(type);
+    forecastOutput += fillForecastOutput(targetHourMin, targetHourMax, type, day);
     updatePage(type, forecastOutput);
-    addListeners(type);
+    addListeners(day);
+    adjustPageScroll();
+}
+
+function setDay(type) {
+    if (type == "today" || type == "earlier") {
+        return 0;
+    }
+    else if (type == "next") {
+        let day = parseInt(document.querySelector("#hourly-next").dataset.day);
+        return day;
+    }
+    else {
+        let day = document.querySelector("#hourly-previous").dataset.day;
+        return day;
+    }
+}
+
+function validateType(type, day) {
+    if (type == "previous" && day == 0) {
+        console.log("today");
+        return "today";
+    }
+    else {
+        return type;
+    }
 }
 
 function setTargetHourMin (type, currentHour) {
-    if (type == "earlier") {
-        return 0;
+    if (type == "today") {
+        return currentHour;
     }
     else {
-        return currentHour;
+        return 0;
     }
 }
 
@@ -54,56 +81,83 @@ function setTargetHourMax (type, currentHour) {
     }
 }
 
-function initializeForecastOutput(type, currentHour) {
-    if (type == "initial" || type == "tomorrow") {
-        if (currentHour > 0) {
-            return "<div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
-        }
+function initializeForecastOutput(type) {
+    if (type == "today") {
+        return "<div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
     }
-    else if (type == "earlier") {
+    else {
         return "";
     }
 }
 
-function fillForecastOutput(targetHourMin, targetHourMax, type) {
+function fillForecastOutput(targetHourMin, targetHourMax, type, day) {
     let outputBody = "";
     for (let i = targetHourMin; i <= targetHourMax; i++) {
-        let conditionIcon = forecastData.forecastday[0].hour[i].condition.icon;
-        let conditionText = forecastData.forecastday[0].hour[i].condition.text;
-        let temp = Math.round(forecastData.forecastday[0].hour[i].temp_f);
-        let feelsLike = Math.round(forecastData.forecastday[0].hour[i].feelslike_f);
-        let precipChance = Math.max(forecastData.forecastday[0].hour[i].chance_of_rain, forecastData.forecastday[0].hour[i].chance_of_snow);
+        let conditionIcon = forecastData.forecastday[day].hour[i].condition.icon;
+        let conditionText = forecastData.forecastday[day].hour[i].condition.text;
+        let temp = Math.round(forecastData.forecastday[day].hour[i].temp_f);
+        let feelsLike = Math.round(forecastData.forecastday[day].hour[i].feelslike_f);
+        let precipChance = Math.max(forecastData.forecastday[day].hour[i].chance_of_rain, forecastData.forecastday[day].hour[i].chance_of_snow);
         outputBody += "<div class=m-hour><div class=m-hour-top-half><div class=flex-wrap><p>" + hours[i] + "</p><img class=m-icon src=" + conditionIcon + " /></div></div><div class=m-hour-top-half><div class=flex-wrap><p>" + conditionText + "</p></div></div><div class=m-hour-bottom><ul class=m-stats><li>" + temp + "&#176;</li><li>Feels like " + feelsLike + "&#176;</li><li>" + precipChance + "% prec</li></ul></div></div><div class=block-divider></div>";
     }
-    if (type == "initial") {
-        outputBody += "<div id=hourly-tom>Tomorrow <span class=arrow>&#8594</span></div>";
-    }
+    outputBody += createButtons(type, day);
     return outputBody;
 }
 
-function updatePage(type, forecastOutput) {
-    if (type == "initial" || type == "tomorrow") {
-        document.getElementById("forecast-wrap").innerHTML = forecastOutput;
+function createButtons(type, day) {
+    if (type == "earlier") {
+        return "";
+    }
+    if (day == 0) {
+        let nextDay = day + 1;
+        return "<div id=hourly-next class=arrow-button-full data-day=" + nextDay + " >tomorrow <span class=arrow>&#8594</span></div>";
+    }
+    else if (day == 2) {
+        let prevDay = day - 1;
+        return "<div id=hourly-previous class=arrow-button-full data-day=" + prevDay + " ><span class=arrow>&#8592</span> previous day</div>";
     }
     else {
-        document.getElementById("forecast-wrap").insertAdjacentHTML("afterbegin", forecastOutput);
+        let nextDay = day + 1;
+        let prevDay = day - 1;
+        return "<div id=arrow-button-wrap><div id=hourly-previous class=arrow-button-previous-small data-day=" + prevDay + " ><span class=arrow>&#8592</span> Previous day</div><div id=hourly-next class=arrow-button-next-small data-day=" + nextDay + " >Next day <span class=arrow>&#8594</span></div></div>";
     }
 }
 
-function addListeners(type) {
-    if (type == "initial" || type == "tomorrow") {
+function updatePage(type, forecastOutput) {
+    if (type == "earlier") {
+        document.getElementById("forecast-wrap").insertAdjacentHTML("afterbegin", forecastOutput);
+    }
+    else {
+        document.getElementById("forecast-wrap").innerHTML = forecastOutput;
+    }
+}
+
+function addListeners(day) {
+    if (day == 0) {
         document.getElementById("earlier").addEventListener("click", function() {
             createHourBlocks("earlier");
             document.getElementById("earlier").style.display = "none";
         });
+        document.getElementById("hourly-next").addEventListener("click", function (){
+            createHourBlocks("next");
+        });
     }
-    if (type == "initial" || type == "earlier") {
-        document.getElementById("hourly-tom").addEventListener("click", function (){
-            showTomorrow();
-        }, {once: true});
+    else if (day == 2) {
+        document.getElementById("hourly-previous").addEventListener("click", function (){
+            createHourBlocks("previous");
+        });
+    }
+    else {
+        document.getElementById("hourly-next").addEventListener("click", function (){
+            createHourBlocks("next");
+        });
+        document.getElementById("hourly-previous").addEventListener("click", function (){
+            createHourBlocks("previous");
+        });
     }
 }
 
-function showTomorrow() {
-
+function adjustPageScroll() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
 }
