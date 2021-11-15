@@ -135,6 +135,11 @@ function addButtonListeners(type, day) {
     if (type == "earlier") {
         return;
     }
+    if (day == 0) {
+        document.getElementById("earlier").addEventListener("click", function (){
+            createHourBlocks("earlier");
+        }, {once: true});
+    }
     if (day < 2) {
         document.getElementById("hourly-next").addEventListener("click", function (){
             createHourBlocks("next");
