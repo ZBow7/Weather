@@ -35,7 +35,7 @@ function createHourBlocks(type) {
     let forecastOutput = initializeForecastOutput(type);
     forecastOutput += fillForecastOutput(targetHourMin, targetHourMax, type, day);
     updatePage(type, forecastOutput);
-    addListeners(day);
+    addButtonListeners(type, day);
     adjustPageScroll();
 }
 
@@ -48,14 +48,13 @@ function setDay(type) {
         return day;
     }
     else {
-        let day = document.querySelector("#hourly-previous").dataset.day;
+        let day = parseInt(document.querySelector("#hourly-previous").dataset.day);
         return day;
     }
 }
 
 function validateType(type, day) {
     if (type == "previous" && day == 0) {
-        console.log("today");
         return "today";
     }
     else {
@@ -132,28 +131,19 @@ function updatePage(type, forecastOutput) {
     }
 }
 
-function addListeners(day) {
-    if (day == 0) {
-        document.getElementById("earlier").addEventListener("click", function() {
-            createHourBlocks("earlier");
-            document.getElementById("earlier").style.display = "none";
-        });
+function addButtonListeners(type, day) {
+    if (type == "earlier") {
+        return;
+    }
+    if (day < 2) {
         document.getElementById("hourly-next").addEventListener("click", function (){
             createHourBlocks("next");
-        });
+        }, {once: true});
     }
-    else if (day == 2) {
+    if (day > 0) {
         document.getElementById("hourly-previous").addEventListener("click", function (){
             createHourBlocks("previous");
-        });
-    }
-    else {
-        document.getElementById("hourly-next").addEventListener("click", function (){
-            createHourBlocks("next");
-        });
-        document.getElementById("hourly-previous").addEventListener("click", function (){
-            createHourBlocks("previous");
-        });
+        }, {once: true});
     }
 }
 
