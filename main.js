@@ -26,6 +26,7 @@ function createData(fullData) {
 }
 
 function createHourBlocks(type) {
+    hideEarlierButton(type);
     let today = new Date();
     let currentHour = today.getHours();
     let day = setDay(type);
@@ -37,6 +38,12 @@ function createHourBlocks(type) {
     updatePage(type, forecastOutput);
     addButtonListeners(type, day);
     adjustPageScroll();
+}
+
+function hideEarlierButton(type) {
+    if (type == "earlier") {
+        document.getElementById("earlier").style.display = "none";
+    }
 }
 
 function setDay(type) {
@@ -81,6 +88,7 @@ function setTargetHourMax (type, currentHour) {
 }
 
 function initializeForecastOutput(type) {
+    console.log(type);
     if (type == "today") {
         return "<div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
     }
