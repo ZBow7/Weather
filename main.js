@@ -44,14 +44,14 @@ function createDailyBlocks() {
 function updatePanel(type) {
     document.querySelector(".forecast-panel").style.display = "block";
     if (type == "daily") {
-        document.getElementById("daily-panel-link").style.display = "none";
-        document.getElementById("hourly-panel-link").style.display = "inline";
-        document.getElementById("three-day-panel-link").style.display = "inline";
+        document.getElementById("daily-panel-link").className = "panel-link-highlighted";
+        document.getElementById("hourly-panel-link").className = "panel-link-normal";
+        document.getElementById("three-day-panel-link").className = "panel-link-normal";
     }
     else if (type == "hourly") {
-        document.getElementById("daily-panel-link").style.display = "inline";
-        document.getElementById("hourly-panel-link").style.display = "none";
-        document.getElementById("three-day-panel-link").style.display = "inline";
+        document.getElementById("daily-panel-link").className = "panel-link-normal";
+        document.getElementById("hourly-panel-link").className = "panel-link-highlighted";
+        document.getElementById("three-day-panel-link").className = "panel-link-normal";
     }
 }
 

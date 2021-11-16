@@ -142,16 +142,22 @@ body {
 
 .forecast-panel-list li {
     display: inline;
-    padding-left: 10px;
+    padding-left: 25px;
 }
 
-.panel-link {
+.panel-link-normal {
     text-decoration: none;
 }
 
-.panel-link:hover {
+.panel-link-normal:hover {
     cursor: pointer;
+    color: blue;
+}
+
+.panel-link-highlighted {
+    text-decoration: underline;
     color: red;
+    font-size: 1.5rem;
 }
 
 .block-divider {
