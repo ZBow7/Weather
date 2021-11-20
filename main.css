@@ -99,7 +99,7 @@ body {
 .m-hour-top-half p {
     margin: 0;
     padding: 0;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 .flex-wrap {
@@ -124,7 +124,7 @@ body {
 .m-stats li {
     display: inline;
     margin-right: 15px;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 }
 
 .forecast-panel {
@@ -156,8 +156,12 @@ body {
 
 .panel-link-highlighted {
     text-decoration: underline;
-    color: red;
+    color: #c4281d;
     font-size: 1.5rem;
+}
+
+#forecast-wrap {
+    margin-top: 40;
 }
 
 .block-divider {
@@ -225,29 +229,31 @@ body {
 
 .m-daily {
     width: 100%;
-    margin: 0 auto;
+    margin: 30 auto 30;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .location-daily {
     width: 100%;
-    margin: 30 auto 15;
-    font-size: 1.5rem;
+    margin: 30 auto 30;
+    font-weight: bold;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .date-daily {
     width: 100%;
-    font-size: 1.5rem;
-    margin-bottom: 15;
+    font-weight: bold;
+    margin-bottom: 5;
 }
 
 .condition-wrap-daily {
-    margin-bottom: 15;
+    margin-bottom: 5;
 }
 
 .condition-description-daily {
-    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .temp-wrap-daily {
@@ -257,16 +263,30 @@ body {
 .current-temp-daily {
     width: 100%;
     text-align: center;
-    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
 .temp-column-daily {
-    font-size: 1.25rem;
-    padding: 0 15 0;
+    padding: 0 20 0;
+}
+
+.temp-title-daily {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.temp-title-high {
+    color: #c4281d;
+}
+
+.temp-title-low {
+    color: #0068c5;
 }
 
 .precip-chance-daily {
     width: 100%;
     text-align: center;
-    font-size: 1.5rem;
+    margin-top: 10;
+    font-size: 1.4rem;
 }
+
