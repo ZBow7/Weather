@@ -233,6 +233,7 @@ body {
     width: 100%;
     margin: 30 auto 15;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .date-daily {

@@ -56,9 +56,9 @@ function updatePanel(type) {
 
 function fillDailyForecast(numForecastDays) {
     //Loops through our weather data and assembles the final output for the user
-    let forecastOutput = "";
     let locationName = forecastData.location.name;
     let locationRegion = forecastData.location.region;
+    let forecastOutput = "<div class=location-daily>" + locationName + ", " + locationRegion + "</div>";
     if (numForecastDays == 1) {
         let date = forecastData.forecast.forecastday[0].date;
         let conditionIcon = forecastData.current.condition.icon;
@@ -68,7 +68,7 @@ function fillDailyForecast(numForecastDays) {
         let dailyLowTemp = Math.round(forecastData.forecast.forecastday[0].day.mintemp_f);
         let currentFeelsLike = Math.round(forecastData.current.feelslike_f);
         let precipChance = Math.max(forecastData.forecast.forecastday[0].day.daily_chance_of_rain, forecastData.forecast.forecastday[0].day.daily_chance_of_snow);
-        forecastOutput = "<div class=m-daily><div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=current-temp-daily>Current temp : " + currentTemp + "&#176</div><div class=flex-wrap-daily><div class=temp-column-daily><div class=temp-title-daily>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Feels like</div><div class=temp-value-daily>" + currentFeelsLike + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div></div>";
+        forecastOutput += "<div class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=current-temp-daily>Current temp : " + currentTemp + "&#176</div><div class=flex-wrap-daily><div class=temp-column-daily><div class=temp-title-daily>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Feels like</div><div class=temp-value-daily>" + currentFeelsLike + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div></div>";
     }
     else {
         for (let i = 0; i < 3; i++) {
@@ -78,7 +78,7 @@ function fillDailyForecast(numForecastDays) {
             let dailyHighTemp = Math.round(forecastData.forecast.forecastday[i].day.maxtemp_f);
             let dailyLowTemp = Math.round(forecastData.forecast.forecastday[i].day.mintemp_f);
             let precipChance = Math.max(forecastData.forecast.forecastday[i].day.daily_chance_of_rain, forecastData.forecast.forecastday[i].day.daily_chance_of_snow);
-            forecastOutput += "<div class=m-daily><div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=flex-wrap-daily><div class=temp-column-daily><div class=temp-title-daily>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div></div>";
+            forecastOutput += "<div class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=flex-wrap-daily><div class=temp-column-daily><div class=temp-title-daily>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div></div>";
         }
     }
     return forecastOutput;
