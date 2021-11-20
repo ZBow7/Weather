@@ -12,6 +12,7 @@ function handleMobileNav() {
 }
 
 function handleSearch() {
+    //Triggered when the user hits search
     let userSearch = document.getElementById("location-input").value;
     fetch("main.php?userSearch=" + userSearch)
     .then(response => response.json())
@@ -21,17 +22,20 @@ function handleSearch() {
 }
 
 function createData(fullData) {
+    //Assignment of api data
     forecastData = fullData;
     createDailyBlocks(1, "daily");
 }
 
 function createDailyBlocks(numForecastDays, type) {
+    //Default forecast type
     updatePanel(type);
     let forecastOutput = fillDailyForecast(numForecastDays);
     updatePage(type, forecastOutput);
 }
 
 function updatePanel(type) {
+    //This is the panel with which the user can select a forecast type - hourly, today, 3 day
     document.querySelector(".forecast-panel").style.display = "block";
     if (type == "daily") {
         document.getElementById("daily-panel-link").className = "panel-link-highlighted";
@@ -51,6 +55,7 @@ function updatePanel(type) {
 }
 
 function fillDailyForecast(numForecastDays) {
+    //Loops through our weather data and assembles the final output for the user
     let forecastOutput = "";
     let locationName = forecastData.location.name;
     let locationRegion = forecastData.location.region;
@@ -80,6 +85,7 @@ function fillDailyForecast(numForecastDays) {
 }
 
 function createHourBlocks(type) {
+    //Creates the hourly forecast type
     updatePanel("hourly");
     hideEarlierButton(type);
     let today = new Date();
@@ -102,6 +108,7 @@ function hideEarlierButton(type) {
 }
 
 function setDay(type) {
+    //Assign day based on selected forecast type
     if (type == "today" || type == "earlier") {
         return 0;
     }
@@ -125,6 +132,7 @@ function validateType(type, day) {
 }
 
 function setTargetHourMin (type, currentHour) {
+    //Sets started hour for forecast output
     if (type == "today") {
         return currentHour;
     }
@@ -134,6 +142,7 @@ function setTargetHourMin (type, currentHour) {
 }
 
 function setTargetHourMax (type, currentHour) {
+    //Sets end hour for forecast output
     if (type == "earlier") {
         return currentHour - 1;
     }
@@ -143,6 +152,7 @@ function setTargetHourMax (type, currentHour) {
 }
 
 function initializeForecastOutput(type) {
+    //Adds the earlier button if the forecast type is today and the already passed hours are not currently displayed
     if (type == "today") {
         return "<div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
     }
@@ -152,6 +162,7 @@ function initializeForecastOutput(type) {
 }
 
 function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
+    //Loops through our weather data and assembles the final output for the user
     let outputBody = "";
     for (let i = targetHourMin; i <= targetHourMax; i++) {
         let conditionIcon = forecastData.forecast.forecastday[day].hour[i].condition.icon;
@@ -166,6 +177,7 @@ function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
 }
 
 function createButtons(type, day) {
+    //Adds appropriate buttons to final forecast output
     if (type == "earlier") {
         return "";
     }
@@ -215,6 +227,7 @@ function addButtonListeners(type, day) {
 }
 
 function adjustPageScroll() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+    //Scrolls to the top when the user selects next day so they are then starting at the top of the forecast
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
