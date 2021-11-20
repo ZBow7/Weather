@@ -22,23 +22,13 @@ function handleSearch() {
 
 function createData(fullData) {
     forecastData = fullData;
-    createDailyBlocks();
-    //createHourBlocks("today");
+    createDailyBlocks(1, "daily");
 }
 
-function createDailyBlocks() {
-    //Replace magic numbers below
-    updatePanel("daily");
-    let locationName = forecastData.location.name;
-    let locationRegion = forecastData.location.region;
-    let date = forecastData.forecast.forecastday[0].date;
-    let conditionIcon = forecastData.current.condition.icon;
-    let conditionText = forecastData.current.condition.text;
-    let currentTemp = Math.round(forecastData.current.temp_f);
-    let dailyHighTemp = Math.round(forecastData.forecast.forecastday[0].day.maxtemp_f);
-    let dailyLowTemp = Math.round(forecastData.forecast.forecastday[0].day.mintemp_f);
-    let currentFeelsLike = Math.round(forecastData.current.feelslike_f);
-    document.getElementById("forecast-wrap").innerHTML = "<div class=m-daily><div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=current-temp-daily>Current temp : " + currentTemp + "&#176</div><div class=flex-wrap-daily><div class=temp-column-daily><div class=temp-title-daily>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Feels like</div><div class=temp-value-daily>" + currentFeelsLike + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : 25%</div></div>";
+function createDailyBlocks(numForecastDays, type) {
+    updatePanel(type);
+    let forecastOutput = fillDailyForecast(numForecastDays);
+    updatePage(type, forecastOutput);
 }
 
 function updatePanel(type) {
@@ -53,6 +43,40 @@ function updatePanel(type) {
         document.getElementById("hourly-panel-link").className = "panel-link-highlighted";
         document.getElementById("three-day-panel-link").className = "panel-link-normal";
     }
+    else {
+        document.getElementById("daily-panel-link").className = "panel-link-normal";
+        document.getElementById("hourly-panel-link").className = "panel-link-normal";
+        document.getElementById("three-day-panel-link").className = "panel-link-highlighted";
+    }
+}
+
+function fillDailyForecast(numForecastDays) {
+    let forecastOutput = "";
+    let locationName = forecastData.location.name;
+    let locationRegion = forecastData.location.region;
+    if (numForecastDays == 1) {
+        let date = forecastData.forecast.forecastday[0].date;
+        let conditionIcon = forecastData.current.condition.icon;
+        let conditionText = forecastData.current.condition.text;
+        let currentTemp = Math.round(forecastData.current.temp_f);
+        let dailyHighTemp = Math.round(forecastData.forecast.forecastday[0].day.maxtemp_f);
+        let dailyLowTemp = Math.round(forecastData.forecast.forecastday[0].day.mintemp_f);
+        let currentFeelsLike = Math.round(forecastData.current.feelslike_f);
+        let precipChance = Math.max(forecastData.forecast.forecastday[0].day.daily_chance_of_rain, forecastData.forecast.forecastday[0].day.daily_chance_of_snow);
+        forecastOutput = "<div class=m-daily><div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=current-temp-daily>Current temp : " + currentTemp + "&#176</div><div class=flex-wrap-daily><div class=temp-column-daily><div class=temp-title-daily>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Feels like</div><div class=temp-value-daily>" + currentFeelsLike + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div></div>";
+    }
+    else {
+        for (let i = 0; i < 3; i++) {
+            let date = forecastData.forecast.forecastday[i].date;
+            let conditionIcon = forecastData.forecast.forecastday[i].day.condition.icon;
+            let conditionText = forecastData.forecast.forecastday[i].day.condition.text;
+            let dailyHighTemp = Math.round(forecastData.forecast.forecastday[i].day.maxtemp_f);
+            let dailyLowTemp = Math.round(forecastData.forecast.forecastday[i].day.mintemp_f);
+            let precipChance = Math.max(forecastData.forecast.forecastday[i].day.daily_chance_of_rain, forecastData.forecast.forecastday[i].day.daily_chance_of_snow);
+            forecastOutput += "<div class=m-daily><div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=flex-wrap-daily><div class=temp-column-daily><div class=temp-title-daily>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div></div>";
+        }
+    }
+    return forecastOutput;
 }
 
 function createHourBlocks(type) {
@@ -65,7 +89,7 @@ function createHourBlocks(type) {
     let targetHourMin = setTargetHourMin(type, currentHour);
     let targetHourMax = setTargetHourMax(type, currentHour);
     let forecastOutput = initializeForecastOutput(type);
-    forecastOutput += fillForecastOutput(targetHourMin, targetHourMax, type, day);
+    forecastOutput += fillHourlyForecast(targetHourMin, targetHourMax, type, day);
     updatePage(type, forecastOutput);
     addButtonListeners(type, day);
     adjustPageScroll();
@@ -127,7 +151,7 @@ function initializeForecastOutput(type) {
     }
 }
 
-function fillForecastOutput(targetHourMin, targetHourMax, type, day) {
+function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
     let outputBody = "";
     for (let i = targetHourMin; i <= targetHourMax; i++) {
         let conditionIcon = forecastData.forecast.forecastday[day].hour[i].condition.icon;

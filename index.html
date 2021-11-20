@@ -37,8 +37,8 @@
         <div class="forecast-panel">
             <ul class="forecast-panel-list">
                 <li><a id="hourly-panel-link" class="panel-link-normal" onclick="createHourBlocks('today')">Hourly</a></li>
-                <li><a id="daily-panel-link" class="panel-link-normal" onclick="createDailyBlocks()">Daily</a></li>
-                <li><a id="three-day-panel-link" class="panel-link-normal" >3 Day</a></li>
+                <li><a id="daily-panel-link" class="panel-link-normal" onclick="createDailyBlocks(1, 'daily')">Today</a></li>
+                <li><a id="three-day-panel-link" class="panel-link-normal" onclick="createDailyBlocks(3, 'threeDay')" >3 Day</a></li>
             </ul>
         </div>
         <div id="forecast-wrap" class="forecast-wrap">
