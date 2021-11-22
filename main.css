@@ -290,3 +290,24 @@ body {
     font-size: 1.4rem;
 }
 
+.more-details {
+    margin-top: 15;
+    margin-bottom: -10;
+    font-size: 1.25rem;
+}
+
+.details-link {
+    text-decoration: none;
+}
+
+.details-link:hover {
+    cursor: pointer;
+}
+
+.detail {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.4rem;
+    text-align: left;
+}
