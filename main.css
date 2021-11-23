@@ -230,7 +230,7 @@ body {
 
 .m-daily {
     width: min-content;
-    min-width: 271px;
+    min-width: 320px;
     border-radius: 10px;
     margin: 15 auto 15;
     text-align: center;
@@ -317,6 +317,7 @@ body {
 }
 */
 @media only screen and (max-width: 360px) {
+    
     .details-wrap {
         padding: 5 0 15;
         width: 320px;
