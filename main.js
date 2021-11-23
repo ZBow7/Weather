@@ -68,7 +68,7 @@ function fillDailyForecast(numForecastDays) {
         let dailyLowTemp = Math.round(forecastData.forecast.forecastday[0].day.mintemp_f);
         let currentFeelsLike = Math.round(forecastData.current.feelslike_f);
         let precipChance = Math.max(forecastData.forecast.forecastday[0].day.daily_chance_of_rain, forecastData.forecast.forecastday[0].day.daily_chance_of_snow);
-        forecastOutput += "<div id=m-daily-0 class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=current-temp-daily>Current temp : " + currentTemp + "&#176</div><div class=flex-wrap-daily><div class=temp-column-daily><div class='temp-title-daily temp-title-high'>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class='temp-title-daily temp-title-low'>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Feels like</div><div class=temp-value-daily>" + currentFeelsLike + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div><div id=more-details-0 class=more-details><a class=details-link onclick=showMore(0)>More</a></div></div>";
+        forecastOutput += "<div id=m-daily-0 class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=current-temp-daily>Current temp : " + currentTemp + "&#176</div><div class=flex-wrap-daily><div class=temp-column-daily><div class='temp-title-daily temp-title-high'>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class='temp-title-daily temp-title-low'>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div><div class=temp-column-daily><div class=temp-title-daily>Feels like</div><div class=temp-value-daily>" + currentFeelsLike + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div><div id=more-details-daily-0 class=more-details><a class=details-link onclick=showMore('daily',0)>More</a></div></div>";
     }
     else {
         for (let i = 0; i < 3; i++) {
@@ -78,7 +78,7 @@ function fillDailyForecast(numForecastDays) {
             let dailyHighTemp = Math.round(forecastData.forecast.forecastday[i].day.maxtemp_f);
             let dailyLowTemp = Math.round(forecastData.forecast.forecastday[i].day.mintemp_f);
             let precipChance = Math.max(forecastData.forecast.forecastday[i].day.daily_chance_of_rain, forecastData.forecast.forecastday[i].day.daily_chance_of_snow);
-            forecastOutput += "<div id=m-daily-" + i + " class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=flex-wrap-daily><div class=temp-column-daily><div class='temp-title-daily temp-title-high'>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class='temp-title-daily temp-title-low'>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div><div id=more-details-" + i + " class=more-details><a class=details-link onclick=showMore(" + i + ")>More</a></div></div><div class=block-divider></div>";
+            forecastOutput += "<div id=m-daily-" + i + " class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=flex-wrap-daily><div class=temp-column-daily><div class='temp-title-daily temp-title-high'>High</div><div class=temp-value-daily>" + dailyHighTemp + "&#176</div></div><div class=temp-column-daily><div class='temp-title-daily temp-title-low'>Low</div><div class=temp-value-daily>" + dailyLowTemp + "&#176</div></div></div></div><div class=precip-chance-daily>Precipitation chance : " + precipChance + "%</div><div id=more-details-daily-" + i + " class=more-details><a class=details-link onclick=showMore('daily'," + i + ")>More</a></div></div><div class=block-divider></div>";
         }
     }
     return forecastOutput;
@@ -170,7 +170,7 @@ function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
         let temp = Math.round(forecastData.forecast.forecastday[day].hour[i].temp_f);
         let feelsLike = Math.round(forecastData.forecast.forecastday[day].hour[i].feelslike_f);
         let precipChance = Math.max(forecastData.forecast.forecastday[day].hour[i].chance_of_rain, forecastData.forecast.forecastday[day].hour[i].chance_of_snow);
-        outputBody += "<div class=m-hour><div class=m-hour-top-half><div class=flex-wrap><p>" + hours[i] + "</p><img class=m-icon src=" + conditionIcon + " /></div></div><div class=m-hour-top-half><div class=flex-wrap><p>" + conditionText + "</p></div></div><div class=m-hour-bottom><ul class=m-stats><li>" + temp + "&#176;</li><li>Feels like " + feelsLike + "&#176;</li><li>" + precipChance + "% prec</li></ul></div></div><div class=block-divider></div>";
+        outputBody += "<div id=m-hourly-" + i + " class=m-hour><div class=m-hour-top-half><div class=flex-wrap><p>" + hours[i] + "</p><img class=m-icon src=" + conditionIcon + " /></div></div><div class=m-hour-top-half><div class=flex-wrap><p>" + conditionText + "</p></div></div><div class=m-hour-bottom><ul class=m-stats><li>" + temp + "&#176;</li><li>Feels like " + feelsLike + "&#176;</li><li>" + precipChance + "% prec</li></ul></div><div id=more-details-hourly-" + i + " class=more-details><a class=details-link data-day=" + day + " onclick=showMore('hourly'," + i + ")>More</a></div></div><div class=block-divider></div>";
     }
     outputBody += createButtons(type, day);
     return outputBody;
@@ -226,22 +226,52 @@ function addButtonListeners(type, day) {
     }
 }
 
-function showMore(day) {
-    let humidity = forecastData.forecast.forecastday[day].day.avghumidity;
-    let uvIndex = forecastData.forecast.forecastday[day].day.uv;
-    let maxWind = forecastData.forecast.forecastday[day].day.maxwind_mph;
-    let precipAmount = forecastData.forecast.forecastday[day].day.totalprecip_in;
-    let sunrise = forecastData.forecast.forecastday[day].astro.sunrise;
-    let sunset = forecastData.forecast.forecastday[day].astro.sunset;
-    let detailsOutput = "<div class=details-wrap-" + day + "><div class=detail>Humidity: " + humidity + "%</div><div class=detail>UV index: " + uvIndex + "</div><div class=detail>Wind gusts up to: " + maxWind + "mph</div><div class=detail>Precipitation: " + precipAmount + "</div><div class=detail>Sunrise: " + sunrise + "</div><div class=detail>Sunset: " + sunset + "</div></div><div class=less-details-" + day + "><a class=details-link onclick=showLess(" + day + ")>Less</a></div>";
-    document.getElementById("more-details-" + day).style.display = "none";
-    document.getElementById("m-daily-" + day).insertAdjacentHTML("beforeend", detailsOutput);
+function showMore(type, timeValue) {
+    let moreDetails = createDetails(type, timeValue);
+    let detailsOutput = createDetailsOutput(type, moreDetails, timeValue);
+    document.getElementById("more-details-" + type + "-" + timeValue).style.display = "none";
+    document.getElementById("m-" + type + "-" + timeValue).insertAdjacentHTML("beforeend", detailsOutput);
 }
 
-function showLess(day) {
-    document.querySelector(".details-wrap-" + day).remove();
-    document.querySelector(".less-details-" + day).remove();
-    document.getElementById("more-details-" + day).style.display = "block";
+function showLess(type, timeValue) {
+    document.querySelector(".details-wrap-" + timeValue).remove();
+    document.querySelector(".less-details-" + timeValue).remove();
+    document.getElementById("more-details-" + type + "-" + timeValue).style.display = "block";
+}
+
+function createDetails(type, timeValue) {
+    if (type == "daily") {
+        let moreDetails = {
+            humidity:forecastData.forecast.forecastday[timeValue].day.avghumidity,
+            uvIndex:forecastData.forecast.forecastday[timeValue].day.uv,
+            maxWind:Math.round(forecastData.forecast.forecastday[timeValue].day.maxwind_mph),
+            precipAmount:forecastData.forecast.forecastday[timeValue].day.totalprecip_in,
+            sunrise:forecastData.forecast.forecastday[timeValue].astro.sunrise,
+            sunset:forecastData.forecast.forecastday[timeValue].astro.sunset
+        }
+        return moreDetails;
+    }
+    else {
+        let targetDay = document.getElementById("more-details-hourly-" + timeValue).children[0].getAttribute("data-day");
+        let moreDetails = {
+            humidity:forecastData.forecast.forecastday[targetDay].hour[timeValue].humidity,
+            uvIndex:forecastData.forecast.forecastday[targetDay].hour[timeValue].uv,
+            maxWind:Math.round(forecastData.forecast.forecastday[targetDay].hour[timeValue].gust_mph),
+            precipAmount:forecastData.forecast.forecastday[targetDay].hour[timeValue].precip_in
+        }
+        return moreDetails;
+    }
+}
+
+function createDetailsOutput(type, moreDetails, timeValue) {
+    if (type == "daily") {
+        let detailsOutput = "<div class=details-wrap-" + timeValue + "><div class=detail>Humidity: " + moreDetails.humidity + "%</div><div class=detail>UV index: " + moreDetails.uvIndex + "</div><div class=detail>Wind gusts: " + moreDetails.maxWind + "mph</div><div class=detail>Precipitation: " + moreDetails.precipAmount + " in</div><div class=detail>Sunrise: " + moreDetails.sunrise + "</div><div class=detail>Sunset: " + moreDetails.sunset + "</div></div><div class=less-details-" + timeValue + "><a class=details-link onclick=showLess('" + type + "'," + timeValue + ")>Less</a></div>";
+        return detailsOutput;
+    }
+    else {
+        let detailsOutput = "<div class=details-wrap-" + timeValue + "><div class=detail>Humidity: " + moreDetails.humidity + "%</div><div class=detail>UV index: " + moreDetails.uvIndex + "</div><div class=detail>Wind gusts: " + moreDetails.maxWind + "mph</div><div class=detail>Precipitation: " + moreDetails.precipAmount + " in</div></div><div class=less-details-" + timeValue + "><a class=details-link onclick=showLess('" + type + "'," + timeValue + ")>Less</a></div>";
+        return detailsOutput;
+    }
 }
 
 function adjustPageScroll() {
