@@ -2,6 +2,7 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Karla', sans-serif;
+    min-width: 320px;
 }
 
 .nav-wrap {
@@ -228,10 +229,13 @@ body {
 }
 
 .m-daily {
-    width: 100%;
-    margin: 30 auto 30;
+    width: min-content;
+    min-width: 271px;
+    border-radius: 10px;
+    margin: 15 auto 15;
     text-align: center;
     font-size: 1.5rem;
+    background-color: #f0f8ff;
 }
 
 .location-daily {
@@ -285,16 +289,8 @@ body {
     color: #0068c5;
 }
 
-.precip-chance-daily {
-    width: 100%;
-    text-align: center;
-    margin-top: 10;
-    font-size: 1.4rem;
-}
-
 .more-details {
     margin-top: 15;
-    margin-bottom: -10;
     font-size: 1.25rem;
 }
 
@@ -306,10 +302,116 @@ body {
     cursor: pointer;
 }
 
+.details-value {
+    font-weight: bold;
+}
+
+/*
 .detail {
-    width: 50%;
+    width: 45%;
+    margin: 0 auto;
     display: inline-block;
     vertical-align: top;
     font-size: 1.4rem;
     text-align: left;
+}
+*/
+@media only screen and (max-width: 360px) {
+    .details-wrap {
+        padding: 5 0 15;
+        width: 320px;
+        margin: 0 auto;
+    }
+    
+    .detail {
+        width: 46%;
+        margin-left: 2%;
+        margin-top: 10px;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .precip-chance-daily {
+        width: 100%;
+        text-align: center;
+        margin-top: 10;
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 480px) {
+    .details-wrap {
+        padding: 5 0 15;
+        width: 360px;
+        margin: 0 auto;
+    }
+    
+    .detail {
+        width: 46%;
+        margin-left: 2%;
+        margin-top: 10px;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 1.2rem;
+        text-align: left;
+    }
+
+    .precip-chance-daily {
+        width: 100%;
+        text-align: center;
+        margin-top: 10;
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .details-wrap {
+        padding: 5 0 15 10;
+        width: 400px;
+        margin: 0 auto;
+    }
+    
+    .detail {
+        width: 46%;
+        margin-left: 2%;
+        margin-top: 10px;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 1.3rem;
+        text-align: left;
+    }
+
+    .precip-chance-daily {
+        width: 100%;
+        text-align: center;
+        margin-top: 10;
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 760px) {
+    .details-wrap {
+        padding: 5 0 15 35;
+        width: 480px;
+        margin: 0 auto;
+    }
+    
+    .detail {
+        width: 46%;
+        margin-left: 2%;
+        margin-top: 10px;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 1.4rem;
+        text-align: left;
+    }
+
+    .precip-chance-daily {
+        width: 100%;
+        text-align: center;
+        margin-top: 10;
+        font-size: 1.4rem;
+    }
 }
