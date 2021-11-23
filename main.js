@@ -94,7 +94,7 @@ function createHourBlocks(type) {
     type = validateType(type, day);
     let targetHourMin = setTargetHourMin(type, currentHour);
     let targetHourMax = setTargetHourMax(type, currentHour);
-    let forecastOutput = initializeForecastOutput(type);
+    let forecastOutput = initializeForecastOutput(type, day);
     forecastOutput += fillHourlyForecast(targetHourMin, targetHourMax, type, day);
     updatePage(type, forecastOutput);
     addButtonListeners(type, day);
@@ -151,13 +151,16 @@ function setTargetHourMax (type, currentHour) {
     }
 }
 
-function initializeForecastOutput(type) {
+function initializeForecastOutput(type, day) {
     //Adds the earlier button if the forecast type is today and the already passed hours are not currently displayed
+    let locationName = forecastData.location.name;
+    let locationRegion = forecastData.location.region;
+    let targetDate = forecastData.forecast.forecastday[day].date;
     if (type == "today") {
-        return "<div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
+        return "<div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + targetDate + "</div><div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
     }
     else {
-        return "";
+        return "<div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + targetDate + "</div>";
     }
 }
 
