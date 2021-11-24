@@ -45,7 +45,7 @@ body {
 
 #hamburger-wrap {
     float: right;
-    margin: 8px 15px 0 0;
+    padding: 8px 15px 0 0;
 }
 
 #hamburger {
@@ -77,9 +77,10 @@ body {
 }
 
 .m-hour {
-    width: 400px;
+    background-color: rgba(220,239,255,.75);
     margin: 30px auto 25px;
     text-align: center;
+    border-radius: 10px;
 }
 
 .m-condition-icon-wrap {
@@ -91,7 +92,7 @@ body {
 }
 
 .m-hour-top-half {
-    width: 45%;
+    width: 140;
     height: 64px;
     display: inline-block;
     vertical-align: top;
@@ -235,11 +236,10 @@ body {
     margin: 15 auto 15;
     text-align: center;
     font-size: 1.5rem;
-    background-color: #f0f8ff;
+    background-color: rgba(220,239,255,.75);
 }
 
 .location-daily {
-    width: 100%;
     margin: 30 auto 30;
     font-weight: bold;
     text-align: center;
@@ -296,6 +296,7 @@ body {
 
 .details-link {
     text-decoration: none;
+    font-size: 1.25rem;
 }
 
 .details-link:hover {
@@ -317,6 +318,9 @@ body {
 }
 */
 @media only screen and (max-width: 360px) {
+    .m-hour {
+        width: 320px;
+    }
     
     .details-wrap {
         padding: 5 0 15;
@@ -343,6 +347,10 @@ body {
 }
 
 @media only screen and (min-width: 360px) and (max-width: 480px) {
+    .m-hour {
+        width: 360px;
+    }
+
     .details-wrap {
         padding: 5 0 15;
         width: 360px;
@@ -355,7 +363,7 @@ body {
         margin-top: 10px;
         display: inline-block;
         vertical-align: top;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         text-align: left;
     }
 
@@ -363,11 +371,15 @@ body {
         width: 100%;
         text-align: center;
         margin-top: 10;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 600px) {
+    .m-hour {
+        width: 400px;
+    }
+
     .details-wrap {
         padding: 5 0 15 10;
         width: 400px;
@@ -392,7 +404,10 @@ body {
     }
 }
 
-@media only screen and (min-width: 600px) and (max-width: 760px) {
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    .m-hour {
+        width: 480px;
+    }
     .details-wrap {
         padding: 5 0 15 35;
         width: 480px;

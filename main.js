@@ -272,7 +272,7 @@ function createDetailsOutput(type, moreDetails, timeValue) {
         return detailsOutput;
     }
     else {
-        let detailsOutput = "<div class=details-wrap-" + timeValue + "><div class=detail>Humidity: <span class=details-value>" + moreDetails.humidity + "%</span></div><div class=detail>UV index: <span class=details-value>" + moreDetails.uvIndex + "</span></div><div class=detail>Wind gusts: <span class=details-value>" + moreDetails.maxWind + " mph</span></div><div class=detail>Precipitation: <span class=details-value>" + moreDetails.precipAmount + " in</span></div></div><div class=less-details-" + timeValue + "><a class=details-link onclick=showLess('" + type + "'," + timeValue + ")>Less</a></div>";
+        let detailsOutput = "<div class='details-wrap-" + timeValue + " details-wrap'><div class=detail>Humidity: <span class=details-value>" + moreDetails.humidity + "%</span></div><div class=detail>UV index: <span class=details-value>" + moreDetails.uvIndex + "</span></div><div class=detail>Wind gusts: <span class=details-value>" + moreDetails.maxWind + " mph</span></div><div class=detail>Precipitation: <span class=details-value>" + moreDetails.precipAmount + " in</span></div></div><div class=less-details-" + timeValue + "><a class=details-link onclick=showLess('" + type + "'," + timeValue + ")>Less</a></div>";
         return detailsOutput;
     }
 }
