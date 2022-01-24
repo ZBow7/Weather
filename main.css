@@ -93,7 +93,7 @@ body {
 
 .m-hour-top-half {
     width: 140;
-    height: 64px;
+    height: 80px;
     display: inline-block;
     vertical-align: top;
 }
@@ -317,6 +317,32 @@ body {
     text-align: left;
 }
 */
+
+.news-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.news-image {
+    max-width: 300px;
+}
+
+.news-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-right: 25px;
+    max-width: 350px;
+}
+
+#news-header {
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 50 0 25;
+}
+
 @media only screen and (max-width: 360px) {
     .m-hour {
         width: 320px;
@@ -343,6 +369,20 @@ body {
         text-align: center;
         margin-top: 10;
         font-size: 1rem;
+    }
+
+    .news-block {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .news-title {
+        max-width: 300px;
+        padding: 0;
+    }
+
+    .news-image {
+        max-width: 200px;
     }
 }
 
@@ -373,6 +413,16 @@ body {
         margin-top: 10;
         font-size: 1.1rem;
     }
+
+    .news-block {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .news-title {
+        max-width: 330px;
+        padding: 0;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 600px) {
@@ -402,6 +452,16 @@ body {
         margin-top: 10;
         font-size: 1.3rem;
     }
+
+    .news-block {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .news-title {
+        max-width: 450px;
+        padding: 0;
+    }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -430,4 +490,59 @@ body {
         margin-top: 10;
         font-size: 1.4rem;
     }
+
+    .news-title {
+        width: 175px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+    #forecast-wrap {
+        display: inline-block;
+        width: 450px;
+        vertical-align: top;
+        margin-right: 100px;
+    }
+
+    #news-wrap {
+        display: inline-block;
+        width: 300px;
+        vertical-align: top;
+    }
+
+    #main-content {
+        text-align: center;
+    }
+
+    .news-media {
+        width: 150px;
+    }
+
+    .news-image {
+        width: 150px;
+    }
+
+    #news-header {
+        margin-top: 70px;
+    }
+}
+
+#news-wrap {
+    text-align: center;
+}
+
+.news-divider {
+    margin: 25 auto;
+    width: 100%;
+    max-width: 750px;
+    border: 1px solid gray;
+}
+
+.news-media {
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
 }

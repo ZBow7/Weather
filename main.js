@@ -78,7 +78,10 @@ function fillDailyForecast(numForecastDays) {
             let dailyHighTemp = Math.round(forecastData.forecast.forecastday[i].day.maxtemp_f);
             let dailyLowTemp = Math.round(forecastData.forecast.forecastday[i].day.mintemp_f);
             let precipChance = Math.max(forecastData.forecast.forecastday[i].day.daily_chance_of_rain, forecastData.forecast.forecastday[i].day.daily_chance_of_snow);
-            forecastOutput += "<div id=m-daily-" + i + " class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=flex-wrap-daily><div class=temp-column-daily><div class='temp-title-daily temp-title-high'>High</div><div class=temp-value-daily><span class=details-value>" + dailyHighTemp + "&#176</span></div></div><div class=temp-column-daily><div class='temp-title-daily temp-title-low'>Low</div><div class=temp-value-daily><span class=details-value>" + dailyLowTemp + "&#176</span></div></div></div></div><div class=precip-chance-daily>Precipitation chance : <span class=details-value>" + precipChance + "%</span></div><div id=more-details-daily-" + i + " class=more-details><a class=details-link onclick=showMore('daily'," + i + ")>More</a></div></div><div class=block-divider></div>";
+            forecastOutput += "<div id=m-daily-" + i + " class=m-daily><div class=date-daily>" + date + "</div><div class=condition-wrap-daily><div class=flex-wrap-daily><img class=condition-icon-daily src=" + conditionIcon + " /><div class=condition-description-daily>" + conditionText + "</div></div></div><div class=temp-wrap-daily><div class=flex-wrap-daily><div class=temp-column-daily><div class='temp-title-daily temp-title-high'>High</div><div class=temp-value-daily><span class=details-value>" + dailyHighTemp + "&#176</span></div></div><div class=temp-column-daily><div class='temp-title-daily temp-title-low'>Low</div><div class=temp-value-daily><span class=details-value>" + dailyLowTemp + "&#176</span></div></div></div></div><div class=precip-chance-daily>Precipitation chance : <span class=details-value>" + precipChance + "%</span></div><div id=more-details-daily-" + i + " class=more-details><a class=details-link onclick=showMore('daily'," + i + ")>More</a></div></div>";
+            if (i !== 2) {
+                forecastOutput += "<div class=block-divider></div>";
+            }
         }
     }
     return forecastOutput;
@@ -173,7 +176,10 @@ function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
         let temp = Math.round(forecastData.forecast.forecastday[day].hour[i].temp_f);
         let feelsLike = Math.round(forecastData.forecast.forecastday[day].hour[i].feelslike_f);
         let precipChance = Math.max(forecastData.forecast.forecastday[day].hour[i].chance_of_rain, forecastData.forecast.forecastday[day].hour[i].chance_of_snow);
-        outputBody += "<div id=m-hourly-" + i + " class=m-hour><div class=m-hour-top-half><div class=flex-wrap><p>" + hours[i] + "</p><img class=m-icon src=" + conditionIcon + " /></div></div><div class=m-hour-top-half><div class=flex-wrap><p>" + conditionText + "</p></div></div><div class=m-hour-bottom><ul class=m-stats><li>" + temp + "&#176;</li><li>Feels like <span class=details-value>" + feelsLike + "&#176;</span></li><li>" + precipChance + "% prec</li></ul></div><div id=more-details-hourly-" + i + " class=more-details><a class=details-link data-day=" + day + " onclick=showMore('hourly'," + i + ")>More</a></div></div><div class=block-divider></div>";
+        outputBody += "<div id=m-hourly-" + i + " class=m-hour><div class=m-hour-top-half><div class=flex-wrap><p>" + hours[i] + "</p><img class=m-icon src=" + conditionIcon + " /></div></div><div class=m-hour-top-half><div class=flex-wrap><p>" + conditionText + "</p></div></div><div class=m-hour-bottom><ul class=m-stats><li>" + temp + "&#176;</li><li>Feels like <span class=details-value>" + feelsLike + "&#176;</span></li><li>" + precipChance + "% prec</li></ul></div><div id=more-details-hourly-" + i + " class=more-details><a class=details-link data-day=" + day + " onclick=showMore('hourly'," + i + ")>More</a></div></div>";
+        if (i !== targetHourMax) {
+            outputBody += "<div class=block-divider></div>";
+        }
     }
     outputBody += createButtons(type, day);
     return outputBody;
@@ -275,10 +281,37 @@ function createDetailsOutput(type, moreDetails, timeValue) {
         let detailsOutput = "<div class='details-wrap-" + timeValue + " details-wrap'><div class=detail>Humidity: <span class=details-value>" + moreDetails.humidity + "%</span></div><div class=detail>UV index: <span class=details-value>" + moreDetails.uvIndex + "</span></div><div class=detail>Wind gusts: <span class=details-value>" + moreDetails.maxWind + " mph</span></div><div class=detail>Precipitation: <span class=details-value>" + moreDetails.precipAmount + " in</span></div></div><div class=less-details-" + timeValue + "><a class=details-link onclick=showLess('" + type + "'," + timeValue + ")>Less</a></div>";
         return detailsOutput;
     }
-}
+}   
 
 function adjustPageScroll() {
     //Scrolls to the top when the user selects next day so they are then starting at the top of the forecast
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function getNews() {
+    fetch("news.php")
+.then(response => response.json())
+.then(data => {
+    createNews(data);
+    })
+}
+
+function createNews(data) {
+    let newsOutput = "<div id=news-header>Top Weather News</div><div class=news-divider></div>";
+    let duplicateCount = 0;
+    console.log(data);
+    for (let i = 0; i < 4; i++) {
+        //Was getting duplicate entries right next to each other.  Cheap way to solve this for now. 
+        if (i > 0 && data.articles[i+duplicateCount].title == data.articles[i+duplicateCount-1].title) {
+            duplicateCount++;
+            console.log(duplicateCount);
+        }
+        let title = data.articles[i+duplicateCount].title;
+        let media = data.articles[i+duplicateCount].media;
+        newsOutput += "<div class=news-block><div class=news-title>" + title + "</div><div class=news-media><img class=news-image src=" + media + " /></div></div><div class=news-divider></div>"
+    }
+    document.getElementById("news-wrap").innerHTML = newsOutput;
+}
+
+getNews();
