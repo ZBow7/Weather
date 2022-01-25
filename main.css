@@ -343,6 +343,29 @@ body {
     margin: 50 0 25;
 }
 
+.details-wrap {
+    padding: 5 0 15 35;
+    width: 480px;
+    margin: 0 auto;
+}
+
+.detail {
+    width: 46%;
+    margin-left: 2%;
+    margin-top: 10px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.4rem;
+    text-align: left;
+}
+
+.precip-chance-daily {
+    width: 100%;
+    text-align: center;
+    margin-top: 10;
+    font-size: 1.4rem;
+}
+
 @media only screen and (max-width: 360px) {
     .m-hour {
         width: 320px;
@@ -468,28 +491,6 @@ body {
     .m-hour {
         width: 480px;
     }
-    .details-wrap {
-        padding: 5 0 15 35;
-        width: 480px;
-        margin: 0 auto;
-    }
-    
-    .detail {
-        width: 46%;
-        margin-left: 2%;
-        margin-top: 10px;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 1.4rem;
-        text-align: left;
-    }
-
-    .precip-chance-daily {
-        width: 100%;
-        text-align: center;
-        margin-top: 10;
-        font-size: 1.4rem;
-    }
 
     .news-title {
         width: 175px;
@@ -502,7 +503,7 @@ body {
 @media only screen and (min-width: 1000px) {
     #forecast-wrap {
         display: inline-block;
-        width: 450px;
+        width: 520px;
         vertical-align: top;
         margin-right: 100px;
     }

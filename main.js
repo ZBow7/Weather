@@ -32,6 +32,11 @@ function createDailyBlocks(numForecastDays, type) {
     updatePanel(type);
     let forecastOutput = fillDailyForecast(numForecastDays);
     updatePage(type, forecastOutput);
+    if (window.innerWidth > 1000) {
+        for (let i = 0; i < numForecastDays; i++) {
+            showMore("daily", i);
+        }
+    }
 }
 
 function updatePanel(type) {
@@ -301,7 +306,7 @@ function createNews(data) {
     let newsOutput = "<div id=news-header>Top Weather News</div><div class=news-divider></div>";
     let duplicateCount = 0;
     console.log(data);
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 7; i++) {
         //Was getting duplicate entries right next to each other.  Cheap way to solve this for now. 
         if (i > 0 && data.articles[i+duplicateCount].title == data.articles[i+duplicateCount-1].title) {
             duplicateCount++;
