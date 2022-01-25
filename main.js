@@ -112,6 +112,8 @@ function createHourBlocks(type) {
 function hideEarlierButton(type) {
     if (type == "earlier") {
         document.getElementById("earlier").style.display = "none";
+        document.querySelector(".location-daily").style.display = "none";
+        document.querySelector(".date-daily").style.display = "none";
     }
 }
 
