@@ -6,9 +6,12 @@ body {
 }
 
 .nav-wrap {
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 51px;
     background-color: black;
+    z-index: 2;
 }
 
 #mobile-nav-wrap {
@@ -18,14 +21,13 @@ body {
 #mobile-nav {
     display: none;
     position: fixed;
+    top: 51px;
     width: 100%;
     height: 100%;
-    top: 51px;
     color: #FBFAF5;
     background: black;
     font-size: 32px;
     line-height: 60px;
-    z-index: 1;
 }
 
 #nav-list {
@@ -515,7 +517,9 @@ body {
     }
 
     #main-content {
+        position: relative;
         text-align: center;
+        top: 51px;
     }
 
     .news-media {
