@@ -25,6 +25,7 @@ function createData(fullData) {
     //Assignment of api data
     forecastData = fullData;
     createDailyBlocks(1, "daily");
+    setBackgroundImage();
 }
 
 function createDailyBlocks(numForecastDays, type) {
@@ -307,12 +308,10 @@ function getNews() {
 function createNews(data) {
     let newsOutput = "<div id=news-header>Top Weather News</div><div class=news-divider></div>";
     let duplicateCount = 0;
-    console.log(data);
     for (let i = 0; i < 7; i++) {
-        //Was getting duplicate entries right next to each other.  Cheap way to solve this for now. 
+        //Was getting duplicate entries right next to each other.  Easy way to solve this for now. 
         if (i > 0 && data.articles[i+duplicateCount].title == data.articles[i+duplicateCount-1].title) {
             duplicateCount++;
-            console.log(duplicateCount);
         }
         let title = data.articles[i+duplicateCount].title;
         let media = data.articles[i+duplicateCount].media;
@@ -322,3 +321,96 @@ function createNews(data) {
 }
 
 getNews();
+
+function setBackgroundImage() {
+    let isDark = setIsDark();
+    let currentImage = selectBackgroundImage(isDark);
+    document.getElementById('location-search').style.backgroundImage = "url(" + currentImage.url + ")";
+    document.getElementById('location-search').style.backgroundPosition = currentImage.imagePos;
+}
+
+function setIsDark() {
+    let today = new Date();
+    let currentHour = today.getHours();
+    let sunriseHour = parseInt(forecastData.forecast.forecastday[0].astro.sunrise);
+    let sunsetHour = parseInt(forecastData.forecast.forecastday[0].astro.sunset);
+    if (currentHour > sunriseHour) {
+        currentHour -= 12;
+        if (currentHour > sunsetHour) {
+            return 1;
+        }
+    }
+    else {
+        return 1;
+    }
+    return 0;
+}
+
+function selectBackgroundImage(isDark) {
+    let backgroundImages = {
+        sunny: {
+            url: 'https://images.pexels.com/photos/1775862/pexels-photo-1775862.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'center'
+        },
+        clearDay: {
+            url: 'https://images.pexels.com/photos/1775862/pexels-photo-1775862.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'center'
+        },
+        partlyDay: {
+            url: 'https://images.pexels.com/photos/53594/blue-clouds-day-fluffy-53594.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'top'
+        },
+        overcast: {
+            url: 'https://images.pexels.com/photos/414634/pexels-photo-414634.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'center'
+        },
+        cloudy: {
+            url: 'https://images.pexels.com/photos/414634/pexels-photo-414634.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'center'
+        },
+        rain: {
+            url: 'https://images.pexels.com/photos/1529360/pexels-photo-1529360.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'center'
+        },
+        snow: {
+            url: 'https://images.pexels.com/photos/3623207/pexels-photo-3623207.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'center'
+        },
+        mist: {
+            url: 'https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&dpr=2',
+            imagePos: 'center'
+        },
+        clearNight: {
+            url: 'https://images.pexels.com/photos/433155/pexels-photo-433155.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'top'
+        },
+        partlyNight: {
+            url: 'https://images.pexels.com/photos/4737484/pexels-photo-4737484.jpeg?auto=compress&cs=tinysrgb',
+            imagePos: 'center'
+        }
+    }
+    let today = new Date();
+    let currentHour = today.getHours();
+    let currentCondition = forecastData.forecast.forecastday[0].hour[currentHour].condition.text;
+    currentCondition = currentCondition.toLowerCase();
+    if (isDark == 0) {
+        let imageKeys = ['partlyDay', 'sunny', 'clearDay', 'overcast', 'cloudy', 'rain', 'snow', 'mist'];
+        let conditionKeys = ['partly', 'sun', 'clear', 'overcast', 'cloud', 'rain', 'snow', 'mist'];
+        for (let i = 0; i < conditionKeys.length; i++) {
+            if (currentCondition.includes(conditionKeys[i])) {
+                return backgroundImages[imageKeys[i]];
+            }
+        }
+        return backgroundImages[imageKeys[0]];
+    }
+    else {     
+        let imageKeys = ['partlyNight', 'clearNight', 'overcast', 'cloudy', 'rain', 'snow', 'mist'];
+        let conditionKeys = ['partly', 'clear', 'overcast', 'cloud', 'rain', 'snow', 'mist'];
+        for (let i = 0; i < conditionKeys.length; i++) {
+            if (currentCondition.includes(conditionKeys[i])) {
+                return backgroundImages[imageKeys[i]];
+            }
+        }
+        return backgroundImages[imageKeys[0]];
+    }
+}

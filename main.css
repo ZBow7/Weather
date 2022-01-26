@@ -67,15 +67,26 @@ body {
 
 #location-search {
     width: 100%;
-    margin-top: 10px;
+    height: 350px;
     text-align: center;
+    background-image: url("https://images.pexels.com/photos/433155/pexels-photo-433155.jpeg?auto=compress&cs=tinysrgb");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #location-input {
+    position: relative;
+    top: 158px;
     width: 300px;
     height: 35px;
     font-family: 'Karla', sans-serif;
     font-size: 18px;
+}
+
+#location-input-button {
+    position: relative;
+    top: 158px;
 }
 
 .m-hour {
@@ -516,12 +527,6 @@ body {
         vertical-align: top;
     }
 
-    #main-content {
-        position: relative;
-        text-align: center;
-        top: 51px;
-    }
-
     .news-media {
         width: 150px;
     }
@@ -533,6 +538,12 @@ body {
     #news-header {
         margin-top: 70px;
     }
+}
+
+#main-content {
+    position: relative;
+    text-align: center;
+    top: 51px;
 }
 
 #news-wrap {
