@@ -308,6 +308,7 @@ function getNews() {
 function createNews(data) {
     let newsOutput = "<div id=news-header>Top Weather News</div><div class=news-divider></div>";
     let duplicateCount = 0;
+    console.log(data);
     for (let i = 0; i < 7; i++) {
         //Was getting duplicate entries right next to each other.  Easy way to solve this for now. 
         if (i > 0 && data.articles[i+duplicateCount].title == data.articles[i+duplicateCount-1].title) {
@@ -315,7 +316,8 @@ function createNews(data) {
         }
         let title = data.articles[i+duplicateCount].title;
         let media = data.articles[i+duplicateCount].media;
-        newsOutput += "<div class=news-block><div class=news-title>" + title + "</div><div class=news-media><img class=news-image src=" + media + " /></div></div><div class=news-divider></div>"
+        let link = data.articles[i+duplicateCount].link;
+        newsOutput += "<a class=link-basic href=" + link + "><div class=news-block><div class=news-title>" + title + "</div><div class=news-media><img class=news-image src=" + media + " /></div></div></a><div class=news-divider></div>"
     }
     document.getElementById("news-wrap").innerHTML = newsOutput;
 }

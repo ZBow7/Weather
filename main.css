@@ -608,6 +608,7 @@ body {
     padding-bottom: 25px;
 }
 
-.personal-link {
+.link-basic {
     text-decoration: none;
+    color: black;
 }
