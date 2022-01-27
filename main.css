@@ -562,3 +562,52 @@ body {
     display: inline-block;
     vertical-align: top;
 }
+
+#footer {
+    position: relative;
+    top: 100px;
+    text-align: center;
+    background-color: #d8d8d8;
+}
+
+.svg {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    fill: currentColor;
+}
+
+#github {
+    color: black;
+}
+
+#facebook {
+    color: #557dbc;
+}
+
+#linkedIn {
+    color: #1c86c6;
+}
+
+#email {
+    color: #ea4335;
+}
+
+.linkback-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkback-flex img {
+    margin-left: 25px;
+}
+
+#personal {
+    margin-top: 25px;
+    padding-bottom: 25px;
+}
+
+.personal-link {
+    text-decoration: none;
+}
