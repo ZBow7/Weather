@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Weather</title>    
 </head>
 <body>
@@ -31,8 +32,10 @@
     </div>
     <div id="main-content">
         <div id="location-search">
+            <form onsubmit="return false">
                 <input id="location-input" type="text" name="location-input" placeholder="Enter location" />
-                <button id="location-input-button" onclick="handleSearch()">Search</button>
+                <button type="submit" id="location-input-button" onclick="handleSearch()"><i class="material-icons mdc-button__icon">search</i></button>
+            </form>
         </div>
         <div class="forecast-panel">
             <ul class="forecast-panel-list">

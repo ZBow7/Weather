@@ -78,6 +78,7 @@ body {
 #location-input {
     position: relative;
     top: 158px;
+    margin-right: 5px;
     width: 300px;
     height: 35px;
     font-family: 'Karla', sans-serif;
@@ -86,7 +87,7 @@ body {
 
 #location-input-button {
     position: relative;
-    top: 158px;
+    top: 164px;
 }
 
 .m-hour {

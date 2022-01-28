@@ -150,7 +150,6 @@ function validateType(type, day) {
 
 function setTargetHourMin (type, currentLocalHour) {
     //Sets started hour for forecast output
-    console.log("Hour min : " + currentLocalHour);
     if (type == "today") {
         return currentLocalHour;
     }
@@ -161,7 +160,6 @@ function setTargetHourMin (type, currentLocalHour) {
 
 function setTargetHourMax (type, currentLocalHour) {
     //Sets end hour for forecast output
-    console.log("Hour max : " + currentLocalHour);
     if (type == "earlier") {
         return currentLocalHour - 1;
     }
