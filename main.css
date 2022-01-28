@@ -105,6 +105,11 @@ body {
     width: 100%;
 }
 
+.m-hour-bottom {
+    margin-bottom: 10px;
+    margin-top: -3px;
+}
+
 .m-hour-top-half {
     width: 140;
     height: 80px;
@@ -139,7 +144,7 @@ body {
 
 .m-stats li {
     display: inline;
-    margin-right: 15px;
+    margin-right: 20px;
     font-size: 1.25rem;
 }
 
@@ -428,6 +433,10 @@ body {
     #arrow-button-wrap {
         width: 320px;
     }
+
+    .m-stats li {
+        margin-right: 15px;
+    }
 }
 
 @media only screen and (min-width: 360px) and (max-width: 480px) {
@@ -482,6 +491,10 @@ body {
 
     #arrow-button-wrap {
         width: 340px;
+    }
+
+    .m-stats li {
+        margin-right: 15px;
     }
 }
 
