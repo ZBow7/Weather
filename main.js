@@ -429,7 +429,7 @@ let locationCount = 0;
 
 getWorldWeather();
 
-const worldWeatherInterval = setInterval(getWorldWeather, 5000);
+const worldWeatherInterval = setInterval(getWorldWeather, 7500);
 
 function getWorldWeather() {
     let searchLocations = ['New York', 'Los Angeles', 'London', 'Tokyo', 'Moscow', 'Cairo', 'Hong Kong'];
@@ -452,11 +452,13 @@ function setWorldWeather(data) {
     let targetHourMax = targetHourMin;
     let day = 0;
     let type = "world";
-    let forecastOutput = initializeForecastOutput(type, day);
+    let forecastOutput = "<div class=fade-wrap>";
+    forecastOutput += initializeForecastOutput(type, day);
     forecastOutput += "<div class=world-weather-hour>Current hour</div>";
     forecastOutput += fillHourlyForecast(targetHourMin, targetHourMax, type, day);
     forecastOutput += "<div class=world-weather-day>Current day</div>";
     forecastOutput += fillDailyForecast(1, type);
+    forecastOutput += "</div>";
     updatePage(type, forecastOutput);
     showMore("hourly", targetHourMin);
     showMore("daily", day);
