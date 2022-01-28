@@ -63,11 +63,10 @@ function updatePanel(type) {
 
 function fillDailyForecast(numForecastDays, type) {
     //Loops through our weather data and assembles the final output for the user
-    let locationName = forecastData.location.name;
-    let locationRegion = forecastData.location.region;
+    let locationDetails = setLocationDetails();
     let forecastOutput = "";
     if (type !== "world") {
-        forecastOutput = "<div class=location-daily>" + locationName + ", " + locationRegion + "</div>";
+        forecastOutput = "<div class=location-daily>" + locationDetails + "</div>";
     }
     if (numForecastDays == 1) {
         let date = forecastData.forecast.forecastday[0].date;
@@ -170,14 +169,13 @@ function setTargetHourMax (type, currentLocalHour) {
 
 function initializeForecastOutput(type, day) {
     //Adds the earlier button if the forecast type is today and the already passed hours are not currently displayed
-    let locationName = forecastData.location.name;
-    let locationRegion = forecastData.location.region;
+    let locationDetails = setLocationDetails();
     let targetDate = forecastData.forecast.forecastday[day].date;
     if (type == "today") {
-        return "<div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + targetDate + "</div><div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
+        return "<div class=location-daily>" + locationDetails + "</div><div class=date-daily>" + targetDate + "</div><div id=earlier><span class=arrow>&#8593</span><br />Earlier</div>";
     }
     else {
-        return "<div class=location-daily>" + locationName + ", " + locationRegion + "</div><div class=date-daily>" + targetDate + "</div>";
+        return "<div class=location-daily>" + locationDetails + "</div><div class=date-daily>" + targetDate + "</div>";
     }
 }
 
@@ -462,4 +460,17 @@ function setWorldWeather(data) {
     updatePage(type, forecastOutput);
     showMore("hourly", targetHourMin);
     showMore("daily", day);
+}
+
+function setLocationDetails() {
+    let locationName = forecastData.location.name;
+    let locationDetails;
+    let locationCountry = forecastData.location.country;
+    if (locationCountry == "USA" || locationCountry == "United States of America") {
+        locationDetails = forecastData.location.region;
+    }
+    else {
+        locationDetails = forecastData.location.country;
+    }
+    return locationName + ", " + locationDetails;
 }
