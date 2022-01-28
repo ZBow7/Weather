@@ -13,6 +13,7 @@ function handleMobileNav() {
 
 function handleSearch() {
     //Triggered when the user hits search
+    clearInterval(worldWeatherInterval);
     let userSearch = document.getElementById("location-input").value;
     fetch("main.php?userSearch=" + userSearch)
     .then(response => response.json())
@@ -31,7 +32,7 @@ function createData(fullData) {
 function createDailyBlocks(numForecastDays, type) {
     //Default forecast type
     updatePanel(type);
-    let forecastOutput = fillDailyForecast(numForecastDays);
+    let forecastOutput = fillDailyForecast(numForecastDays, type);
     updatePage(type, forecastOutput);
     if (window.innerWidth > 1000) {
         for (let i = 0; i < numForecastDays; i++) {
@@ -60,11 +61,14 @@ function updatePanel(type) {
     }
 }
 
-function fillDailyForecast(numForecastDays) {
+function fillDailyForecast(numForecastDays, type) {
     //Loops through our weather data and assembles the final output for the user
     let locationName = forecastData.location.name;
     let locationRegion = forecastData.location.region;
-    let forecastOutput = "<div class=location-daily>" + locationName + ", " + locationRegion + "</div>";
+    let forecastOutput = "";
+    if (type !== "world") {
+        forecastOutput = "<div class=location-daily>" + locationName + ", " + locationRegion + "</div>";
+    }
     if (numForecastDays == 1) {
         let date = forecastData.forecast.forecastday[0].date;
         let conditionIcon = forecastData.current.condition.icon;
@@ -179,6 +183,7 @@ function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
     //Loops through our weather data and assembles the final output for the user
     let outputBody = "";
     for (let i = targetHourMin; i <= targetHourMax; i++) {
+        console.log
         let conditionIcon = forecastData.forecast.forecastday[day].hour[i].condition.icon;
         let conditionText = forecastData.forecast.forecastday[day].hour[i].condition.text;
         let temp = Math.round(forecastData.forecast.forecastday[day].hour[i].temp_f);
@@ -189,7 +194,9 @@ function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
             outputBody += "<div class=block-divider></div>";
         }
     }
-    outputBody += createButtons(type, day);
+    if (type !== "world") {
+        outputBody += createButtons(type, day);
+    }
     return outputBody;
 }
 
@@ -308,7 +315,6 @@ function getNews() {
 function createNews(data) {
     let newsOutput = "<div id=news-header>Top Weather News</div><div class=news-divider></div>";
     let duplicateCount = 0;
-    console.log(data);
     for (let i = 0; i < 7; i++) {
         //Was getting duplicate entries right next to each other.  Easy way to solve this for now. 
         if (i > 0 && data.articles[i+duplicateCount].title == data.articles[i+duplicateCount-1].title) {
@@ -415,4 +421,41 @@ function selectBackgroundImage(isDark) {
         }
         return backgroundImages[imageKeys[0]];
     }
+}
+
+let locationCount = 0;
+
+getWorldWeather();
+
+const worldWeatherInterval = setInterval(getWorldWeather, 5000);
+
+function getWorldWeather() {
+    let searchLocations = ['New York', 'Los Angeles', 'London', 'Tokyo', 'Moscow', 'Cairo', 'Hong Kong'];
+    if (locationCount > 6) {
+        locationCount = 0;
+    }
+    fetch("main.php?userSearch=" + searchLocations[locationCount])
+    .then(response => response.json())
+    .then(data => {
+        setWorldWeather(data);
+    })
+    locationCount++;
+}
+
+function setWorldWeather(data) {
+    forecastData = data;
+    let localTime = forecastData.location.localtime;
+    let targetHourMin = localTime.split(" ");
+    targetHourMin = parseInt(targetHourMin[1]);
+    let targetHourMax = targetHourMin;
+    let day = 0;
+    let type = "world";
+    let forecastOutput = initializeForecastOutput(type, day);
+    forecastOutput += "<div class=world-weather-hour>Current hour</div>";
+    forecastOutput += fillHourlyForecast(targetHourMin, targetHourMax, type, day);
+    forecastOutput += "<div class=world-weather-day>Current day</div>";
+    forecastOutput += fillDailyForecast(1, type);
+    updatePage(type, forecastOutput);
+    showMore("hourly", targetHourMin);
+    showMore("daily", day);
 }

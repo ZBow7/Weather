@@ -640,3 +640,17 @@ body {
     text-decoration: none;
     color: black;
 }
+
+.world-weather-hour {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: -10px;
+    font-size: 1.5rem;
+}
+
+.world-weather-day {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
