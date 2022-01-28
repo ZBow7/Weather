@@ -103,6 +103,8 @@ function createHourBlocks(type) {
     hideEarlierButton(type);
     let today = new Date();
     let currentLocalHour = forecastData.location.localtime;
+    currentLocalHour = currentLocalHour.split(" ");
+    currentLocalHour = parseInt(currentLocalHour[1]);
     let day = setDay(type);
     type = validateType(type, day);
     let targetHourMin = setTargetHourMin(type, currentLocalHour);
@@ -148,8 +150,9 @@ function validateType(type, day) {
 
 function setTargetHourMin (type, currentLocalHour) {
     //Sets started hour for forecast output
+    console.log("Hour min : " + currentLocalHour);
     if (type == "today") {
-        return currentHour;
+        return currentLocalHour;
     }
     else {
         return 0;
@@ -158,8 +161,9 @@ function setTargetHourMin (type, currentLocalHour) {
 
 function setTargetHourMax (type, currentLocalHour) {
     //Sets end hour for forecast output
+    console.log("Hour max : " + currentLocalHour);
     if (type == "earlier") {
-        return currentHour - 1;
+        return currentLocalHour - 1;
     }
     else {
         return 23;
