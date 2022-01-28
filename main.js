@@ -102,11 +102,11 @@ function createHourBlocks(type) {
     updatePanel("hourly");
     hideEarlierButton(type);
     let today = new Date();
-    let currentHour = today.getHours();
+    let currentLocalHour = forecastData.location.localtime;
     let day = setDay(type);
     type = validateType(type, day);
-    let targetHourMin = setTargetHourMin(type, currentHour);
-    let targetHourMax = setTargetHourMax(type, currentHour);
+    let targetHourMin = setTargetHourMin(type, currentLocalHour);
+    let targetHourMax = setTargetHourMax(type, currentLocalHour);
     let forecastOutput = initializeForecastOutput(type, day);
     forecastOutput += fillHourlyForecast(targetHourMin, targetHourMax, type, day);
     updatePage(type, forecastOutput);
@@ -146,7 +146,7 @@ function validateType(type, day) {
     }
 }
 
-function setTargetHourMin (type, currentHour) {
+function setTargetHourMin (type, currentLocalHour) {
     //Sets started hour for forecast output
     if (type == "today") {
         return currentHour;
@@ -156,7 +156,7 @@ function setTargetHourMin (type, currentHour) {
     }
 }
 
-function setTargetHourMax (type, currentHour) {
+function setTargetHourMax (type, currentLocalHour) {
     //Sets end hour for forecast output
     if (type == "earlier") {
         return currentHour - 1;
