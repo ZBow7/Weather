@@ -205,7 +205,8 @@ body {
 }
 
 #arrow-button-wrap {
-    width: 100%;
+    width: 460px;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -213,7 +214,7 @@ body {
     width: 100%;
     text-align: center;
     margin: 30 auto 25;
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 
 .arrow-button-full:hover {
@@ -226,21 +227,11 @@ body {
     width: 45%;
     text-align: center;
     margin: 30 auto 25;
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 
 .arrow-button-next-small:hover, .arrow-button-previous-small:hover {
     cursor: pointer;
-}
-
-.arrow-button-previous-small {
-    padding-right: 15px;
-    text-align: right;
-}
-
-.arrow-button-next-small {
-    padding-left: 15px;
-    text-align: left;
 }
 
 .m-daily {
@@ -433,6 +424,10 @@ body {
     .arrow-button-next-small {
         padding-left: 10px;
     }
+
+    #arrow-button-wrap {
+        width: 320px;
+    }
 }
 
 @media only screen and (min-width: 360px) and (max-width: 480px) {
@@ -484,6 +479,10 @@ body {
     .arrow-button-next-small {
         padding-left: 10px;
     }
+
+    #arrow-button-wrap {
+        width: 340px;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 600px) {
@@ -526,6 +525,10 @@ body {
 
     .arrow-button-next-small, .arrow-button-previous-small {
         font-size: 1.5rem;
+    }
+
+    #arrow-button-wrap {
+        width: 380px;
     }
 }
 
