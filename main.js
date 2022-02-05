@@ -183,7 +183,6 @@ function fillHourlyForecast(targetHourMin, targetHourMax, type, day) {
     //Loops through our weather data and assembles the final output for the user
     let outputBody = "";
     for (let i = targetHourMin; i <= targetHourMax; i++) {
-        console.log
         let conditionIcon = forecastData.forecast.forecastday[day].hour[i].condition.icon;
         let conditionText = forecastData.forecast.forecastday[day].hour[i].condition.text;
         let temp = Math.round(forecastData.forecast.forecastday[day].hour[i].temp_f);
@@ -402,8 +401,8 @@ function selectBackgroundImage(isDark) {
     let currentCondition = forecastData.forecast.forecastday[0].hour[currentHour].condition.text;
     currentCondition = currentCondition.toLowerCase();
     if (isDark == 0) {
-        let imageKeys = ['partlyDay', 'sunny', 'clearDay', 'overcast', 'cloudy', 'rain', 'snow', 'mist'];
-        let conditionKeys = ['partly', 'sun', 'clear', 'overcast', 'cloud', 'rain', 'snow', 'mist'];
+        let imageKeys = ['partlyDay', 'mist', 'sunny', 'clearDay', 'overcast', 'cloudy', 'rain', 'snow', 'mist'];
+        let conditionKeys = ['partly', 'fog', 'sun', 'clear', 'overcast', 'cloud', 'rain', 'snow', 'mist'];
         for (let i = 0; i < conditionKeys.length; i++) {
             if (currentCondition.includes(conditionKeys[i])) {
                 return backgroundImages[imageKeys[i]];
@@ -412,8 +411,8 @@ function selectBackgroundImage(isDark) {
         return backgroundImages[imageKeys[0]];
     }
     else {     
-        let imageKeys = ['partlyNight', 'clearNight', 'overcast', 'cloudy', 'rain', 'snow', 'mist'];
-        let conditionKeys = ['partly', 'clear', 'overcast', 'cloud', 'rain', 'snow', 'mist'];
+        let imageKeys = ['partlyNight', 'fog', 'clearNight', 'overcast', 'cloudy', 'rain', 'snow', 'mist'];
+        let conditionKeys = ['partly', 'mist', 'clear', 'overcast', 'cloud', 'rain', 'snow', 'mist'];
         for (let i = 0; i < conditionKeys.length; i++) {
             if (currentCondition.includes(conditionKeys[i])) {
                 return backgroundImages[imageKeys[i]];
