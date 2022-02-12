@@ -182,7 +182,7 @@ body {
 }
 
 #forecast-wrap {
-    margin-top: 40;
+    margin-top: 40px;
 }
 
 .block-divider {
@@ -197,7 +197,7 @@ body {
     width: 100%;
     text-align: center;
     font-size: 2rem;
-    margin: 30 auto 25;
+    margin: 30px auto 25px;
 }
 
 #earlier:hover {
@@ -218,7 +218,7 @@ body {
 .arrow-button-full {
     width: 100%;
     text-align: center;
-    margin: 30 auto 25;
+    margin: 30px auto 25px;
     font-size: 1.75rem;
 }
 
@@ -231,7 +231,7 @@ body {
     vertical-align: top;
     width: 45%;
     text-align: center;
-    margin: 30 auto 25;
+    margin: 30px auto 25px;
     font-size: 1.75rem;
 }
 
@@ -243,14 +243,14 @@ body {
     width: min-content;
     min-width: 320px;
     border-radius: 10px;
-    margin: 15 auto 15;
+    margin: 15px auto 15px;
     text-align: center;
     font-size: 1.5rem;
     background-color: rgba(220,239,255,.75);
 }
 
 .location-daily {
-    margin: 30 auto 30;
+    margin: 30px auto 30px;
     font-weight: bold;
     text-align: center;
     font-size: 1.5rem;
@@ -261,11 +261,11 @@ body {
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 5;
+    margin-bottom: 5px;
 }
 
 .condition-wrap-daily {
-    margin-bottom: 5;
+    margin-bottom: 5px;
 }
 
 .condition-description-daily {
@@ -273,7 +273,7 @@ body {
 }
 
 .temp-wrap-daily {
-    margin-bottom: 15;
+    margin-bottom: 15px;
 }
 
 .current-temp-daily {
@@ -283,7 +283,7 @@ body {
 }
 
 .temp-column-daily {
-    padding: 0 20 0;
+    padding: 0 20px 0;
 }
 
 .temp-title-daily {
@@ -300,7 +300,7 @@ body {
 }
 
 .more-details {
-    margin-top: 15;
+    margin-top: 15px;
     font-size: 1.25rem;
 }
 
@@ -350,11 +350,11 @@ body {
     font-weight: bold;
     text-align: center;
     font-size: 1.5rem;
-    margin: 50 0 25;
+    margin: 50px 0px 25px;
 }
 
 .details-wrap {
-    padding: 5 0 15 35;
+    padding: 5px 0px 15px 35px;
     width: 480px;
     margin: 0 auto;
 }
@@ -372,7 +372,7 @@ body {
 .precip-chance-daily {
     width: 100%;
     text-align: center;
-    margin-top: 10;
+    margin-top: 10px;
     font-size: 1.4rem;
 }
 
@@ -382,7 +382,7 @@ body {
     }
     
     .details-wrap {
-        padding: 5 0 15;
+        padding: 5px 0px 15px;
         width: 320px;
         margin: 0 auto;
     }
@@ -400,7 +400,7 @@ body {
     .precip-chance-daily {
         width: 100%;
         text-align: center;
-        margin-top: 10;
+        margin-top: 10px;
         font-size: 1rem;
     }
 
@@ -437,16 +437,17 @@ body {
     .m-stats li {
         margin-right: 15px;
     }
+
 }
 
 @media only screen and (min-width: 360px) and (max-width: 480px) {
     .m-hour {
-        width: 360px;
+        width: 340px;
     }
 
     .details-wrap {
-        padding: 5 0 15;
-        width: 360px;
+        padding: 5px 0px 15px;
+        width: 340px;
         margin: 0 auto;
     }
     
@@ -463,7 +464,7 @@ body {
     .precip-chance-daily {
         width: 100%;
         text-align: center;
-        margin-top: 10;
+        margin-top: 10px;
         font-size: 1.1rem;
     }
 
@@ -504,7 +505,7 @@ body {
     }
 
     .details-wrap {
-        padding: 5 0 15 10;
+        padding: 5px 0px 15px 10px;
         width: 400px;
         margin: 0 auto;
     }
@@ -522,7 +523,7 @@ body {
     .precip-chance-daily {
         width: 100%;
         text-align: center;
-        margin-top: 10;
+        margin-top: 10px;
         font-size: 1.3rem;
     }
 
@@ -630,8 +631,8 @@ body {
 }
 
 .news-divider {
-    margin: 25 auto;
-    width: 100%;
+    margin: 25px auto;
+    width: 99%;
     max-width: 750px;
     border: 1px solid gray;
 }
