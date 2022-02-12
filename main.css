@@ -322,17 +322,6 @@ body {
     font-weight: bold;
 }
 
-/*
-.detail {
-    width: 45%;
-    margin: 0 auto;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 1.4rem;
-    text-align: left;
-}
-*/
-
 .news-block {
     display: flex;
     justify-content: center;
@@ -379,250 +368,6 @@ body {
     text-align: center;
     margin-top: 10px;
     font-size: 1.4rem;
-}
-
-@media only screen and (max-width: 360px) {
-    .m-hour {
-        width: 320px;
-    }
-    
-    .details-wrap {
-        padding: 5px 0px 15px;
-        width: 320px;
-        margin: 0 auto;
-    }
-    
-    .detail {
-        width: 46%;
-        margin-left: 2%;
-        margin-top: 10px;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 1rem;
-        text-align: left;
-    }
-
-    .precip-chance-daily {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-        font-size: 1rem;
-    }
-
-    .news-block {
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .news-title {
-        max-width: 300px;
-        padding: 0;
-    }
-
-    .news-image {
-        max-width: 200px;
-    }
-
-    .arrow-button-next-small, .arrow-button-previous-small {
-        font-size: 1.25rem;
-    }
-    
-    .arrow-button-previous-small {
-        padding-right: 10px;
-    }
-
-    .arrow-button-next-small {
-        padding-left: 10px;
-    }
-
-    #arrow-button-wrap {
-        width: 320px;
-    }
-
-    .m-stats li {
-        margin-right: 15px;
-    }
-
-}
-
-@media only screen and (min-width: 360px) and (max-width: 480px) {
-    .m-hour {
-        width: 340px;
-    }
-
-    .details-wrap {
-        padding: 5px 0px 15px;
-        width: 340px;
-        margin: 0 auto;
-    }
-    
-    .detail {
-        width: 46%;
-        margin-left: 2%;
-        margin-top: 10px;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 1rem;
-        text-align: left;
-    }
-
-    .precip-chance-daily {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-        font-size: 1.1rem;
-    }
-
-    .news-block {
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .news-title {
-        max-width: 330px;
-        padding: 0;
-    }
-
-    .arrow-button-next-small, .arrow-button-previous-small {
-        font-size: 1.3rem;
-    }
-
-    .arrow-button-previous-small {
-        padding-right: 10px;
-    }
-
-    .arrow-button-next-small {
-        padding-left: 10px;
-    }
-
-    #arrow-button-wrap {
-        width: 340px;
-    }
-
-    .m-stats li {
-        margin-right: 15px;
-    }
-}
-
-@media only screen and (min-width: 480px) and (max-width: 600px) {
-    .m-hour {
-        width: 400px;
-    }
-
-    .details-wrap {
-        padding: 5px 0px 15px 10px;
-        width: 400px;
-        margin: 0 auto;
-    }
-    
-    .detail {
-        width: 46%;
-        margin-left: 2%;
-        margin-top: 10px;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 1.1rem;
-        text-align: left;
-    }
-
-    .precip-chance-daily {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-        font-size: 1.3rem;
-    }
-
-    .news-block {
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .news-title {
-        max-width: 450px;
-        padding: 0;
-    }
-
-    .arrow-button-next-small, .arrow-button-previous-small {
-        font-size: 1.5rem;
-    }
-
-    #arrow-button-wrap {
-        width: 380px;
-    }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-    .detail {
-        width: 46%;
-        margin-left: 2%;
-        margin-top: 10px;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 1.2rem;
-        text-align: left;
-    }
-    
-    .m-hour {
-        width: 480px;
-    }
-
-    .m-daily {
-        max-width: 480px;
-    }
-
-    .news-title {
-        width: 175px;
-        display: inline-block;
-        vertical-align: top;
-    }
-
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1000px) {
-    .detail {
-        width: 46%;
-        margin-left: 2%;
-        margin-top: 10px;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 1.2rem;
-        text-align: left;
-    }
-    
-    .m-hour {
-        width: 480px;
-    }
-
-    .m-daily {
-        max-width: 480px;
-    }
-}
-
-@media only screen and (min-width: 1000px) {
-    #forecast-wrap {
-        display: inline-block;
-        width: 520px;
-        vertical-align: top;
-        margin-right: 100px;
-    }
-
-    #news-wrap {
-        display: inline-block;
-        width: 300px;
-        vertical-align: top;
-    }
-
-    .news-media {
-        width: 150px;
-    }
-
-    .news-image {
-        width: 150px;
-    }
-
-    #news-header {
-        margin-top: 70px;
-    }
 }
 
 #main-content {
@@ -744,3 +489,205 @@ body {
     0% {opacity:0;}
     100% {opacity:1;}
   }
+
+  @media only screen and (max-width: 360px) {
+    .m-hour {
+        width: 320px;
+    }
+    
+    .details-wrap {
+        padding: 5px 0px 15px;
+        width: 320px;
+    }
+    
+    .detail {
+        font-size: 1rem;
+    }
+
+    .precip-chance-daily {
+        font-size: 1rem;
+    }
+
+    .news-block {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .news-title {
+        max-width: 300px;
+        padding: 0;
+    }
+
+    .news-image {
+        max-width: 200px;
+    }
+
+    .arrow-button-next-small, .arrow-button-previous-small {
+        font-size: 1.25rem;
+    }
+    
+    .arrow-button-previous-small {
+        padding-right: 10px;
+    }
+
+    .arrow-button-next-small {
+        padding-left: 10px;
+    }
+
+    #arrow-button-wrap {
+        width: 320px;
+    }
+
+    .m-stats li {
+        margin-right: 15px;
+    }
+
+}
+
+@media only screen and (min-width: 360px) and (max-width: 480px) {
+    .m-hour {
+        width: 340px;
+    }
+
+    .details-wrap {
+        padding: 5px 0px 15px;
+        width: 340px;
+    }
+    
+    .detail {
+        font-size: 1rem;
+    }
+
+    .precip-chance-daily {
+        font-size: 1.1rem;
+    }
+
+    .news-block {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .news-title {
+        max-width: 330px;
+        padding: 0;
+    }
+
+    .arrow-button-next-small, .arrow-button-previous-small {
+        font-size: 1.3rem;
+    }
+
+    .arrow-button-previous-small {
+        padding-right: 10px;
+    }
+
+    .arrow-button-next-small {
+        padding-left: 10px;
+    }
+
+    #arrow-button-wrap {
+        width: 340px;
+    }
+
+    .m-stats li {
+        margin-right: 15px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .m-hour {
+        width: 400px;
+    }
+
+    .details-wrap {
+        padding: 5px 0px 15px 10px;
+        width: 400px;
+    }
+    
+    .detail {
+        font-size: 1.1rem;
+    }
+
+    .precip-chance-daily {
+        font-size: 1.3rem;
+    }
+
+    .news-block {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .news-title {
+        max-width: 450px;
+        padding: 0;
+    }
+
+    .arrow-button-next-small, .arrow-button-previous-small {
+        font-size: 1.5rem;
+    }
+
+    #arrow-button-wrap {
+        width: 380px;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    .detail {
+        font-size: 1.2rem;
+    }
+    
+    .m-hour {
+        width: 480px;
+    }
+
+    .m-daily {
+        max-width: 480px;
+    }
+
+    .news-title {
+        width: 175px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+    .detail {
+        font-size: 1.2rem;
+    }
+    
+    .m-hour {
+        width: 480px;
+    }
+
+    .m-daily {
+        max-width: 480px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    #forecast-wrap {
+        display: inline-block;
+        width: 520px;
+        vertical-align: top;
+        margin-right: 100px;
+    }
+
+    #news-wrap {
+        display: inline-block;
+        width: 300px;
+        vertical-align: top;
+    }
+
+    .news-media {
+        width: 150px;
+    }
+
+    .news-image {
+        width: 150px;
+    }
+
+    #news-header {
+        margin-top: 70px;
+    }
+}
